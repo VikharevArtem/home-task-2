@@ -16,5 +16,18 @@ let resultObjWithIterative = buildNestedObjectIterative(
 );
 
 console.log(
-  `Создание объекта через итирации цикла => ${resultObjWithIterative}`
+  "Создание объекта через итирации цикла => ",
+  resultObjWithIterative
 );
+
+function buildObjectReduce(str) {
+  const arritems = str.split(".");
+
+  return arritems.reduceRight((acc, item) => {
+    return { [item]: acc };
+  }, {});
+}
+
+let resultObjectReduce = buildObjectReduce("one.two.three.four.five");
+
+console.log("Создание объекта через reduce => ", resultObjWithIterative);

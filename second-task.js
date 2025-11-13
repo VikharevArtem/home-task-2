@@ -1,11 +1,13 @@
 function buildNestedObjectIterative(str) {
+  if (str.trim() === "") return "Указанна пустая строка";
+
   const arrItems = str.split(".");
   let resultObj = {};
   let currentObj = resultObj;
 
-  for (let index = 0; index < arrItems.length; index++) {
-    currentObj[arrItems[index]] = {};
-    currentObj = currentObj[arrItems[index]];
+  for (item of arrItems) {
+    currentObj[item] = {};
+    currentObj = currentObj[item];
   }
 
   return resultObj;
@@ -21,13 +23,14 @@ console.log(
 );
 
 function buildObjectReduce(str) {
-  const arritems = str.split(".");
+  if (str.trim() === "") return "Указанна пустая строка";
 
+  const arritems = str.split(".");
   return arritems.reduceRight((acc, item) => {
     return { [item]: acc };
   }, {});
 }
 
-let resultObjectReduce = buildObjectReduce("one.two.three.four.five");
+let resultObjectReduce = buildObjectReduce(" ");
 
-console.log("Создание объекта через reduce => ", resultObjWithIterative);
+console.log("Создание объекта через reduce => ", resultObjectReduce);
